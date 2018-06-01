@@ -9,6 +9,8 @@ public class Order implements Serializable{
 	private static final long serialVersionUID = 1444553315477369627L;
 
 	private Long id;
+	
+	private Long adminId;
     
     private String userName;
     
@@ -35,6 +37,14 @@ public class Order implements Serializable{
     private String day;
     
     private DateTime createTime;
+
+	public Long getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(Long adminId) {
+		this.adminId = adminId;
+	}
 
 	public Long getId() {
 		return id;

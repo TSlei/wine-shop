@@ -8,6 +8,10 @@ public class ScoreRecord implements Serializable{
 	
 	private static final long serialVersionUID = 9006194155186213884L;
 	
+	private Long id;
+	
+	private Long adminId;
+	
 	/**
 	 * 对应订单id
 	 */
@@ -30,6 +34,22 @@ public class ScoreRecord implements Serializable{
 	
 	private DateTime createTime;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(Long adminId) {
+		this.adminId = adminId;
+	}
+
 	public Long getOrderId() {
 		return orderId;
 	}

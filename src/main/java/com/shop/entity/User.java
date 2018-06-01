@@ -8,6 +8,10 @@ public class User implements Serializable {
 	
 	private static final long serialVersionUID = -4586850641697959L;
 
+	private Long id;
+	
+	private Long adminId;
+	
 	private String userName;
     
     private String sex;
@@ -21,6 +25,22 @@ public class User implements Serializable {
     private Long restScore;
     
     private DateTime createTime;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(Long adminId) {
+		this.adminId = adminId;
+	}
 
 	public String getUserName() {
 		return userName;
