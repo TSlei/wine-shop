@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.shop.mapper.OrderMapper">
 
-	<resultMap id="BaseOrderResultMap" type="com.shop.entity.Order">
+	<resultMap id="orderResultMap" type="com.shop.entity.Order">
 		<result column="id" property="id" jdbcType="BIGINT" />
 		<result column="userName" property="userName" jdbcType="VARCHAR" />
 		<result column="vipCode" property="vipCode" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
 		<result column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" property="createTime" />
 	</resultMap>
 
-	<select id="listOrder" resultMap="BaseOrderResultMap">
+	<select id="listOrder" resultMap="orderResultMap">
 		SELECT * FROM t_order where 1=1
 	 <![CDATA[ AND createTime >= #{startTime} ]]>
      <![CDATA[ AND createTime <= #{endTime} ]]>

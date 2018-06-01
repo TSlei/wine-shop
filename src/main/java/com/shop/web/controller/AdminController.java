@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shop.entity.User;
-import com.shop.service.UserService;
+import com.shop.entity.Admin;
+import com.shop.service.AdminService;
 
 @Controller
 @RequestMapping(value="/shop")
-public class UserController {
+public class AdminController {
 	
 	@Autowired
-	private UserService userService;
+	private AdminService adminService;
 	
 	@RequestMapping("/index")
 	public ModelAndView loginPage(){
@@ -27,9 +27,9 @@ public class UserController {
 	@RequestMapping("/login")
 	@ResponseBody
 	public Integer login(HttpServletRequest request,String name,String passWord){
-		User user = userService.login(name, passWord);
-		if(user != null){
-			request.getSession().setAttribute("LOGIN_USER", user);
+		Admin admin = adminService.login(name, passWord);
+		if(admin != null){
+			request.getSession().setAttribute("LOGIN_USER", admin);
 			return 1;
 		}
 		return 0;

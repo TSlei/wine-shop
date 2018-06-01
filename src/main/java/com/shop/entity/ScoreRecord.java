@@ -1,6 +1,7 @@
 package com.shop.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.joda.time.DateTime;
 
@@ -32,7 +33,7 @@ public class ScoreRecord implements Serializable{
 	 */
 	private String remark;
 	
-	private DateTime createTime;
+	private Date createTime;
 	
 	public Long getId() {
 		return id;
@@ -82,12 +83,13 @@ public class ScoreRecord implements Serializable{
 		this.remark = remark;
 	}
 
-	public DateTime getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(DateTime createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+
 	
 }

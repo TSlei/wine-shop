@@ -8,8 +8,6 @@ public class Admin {
     
     private String password;
     
-    private String realName;
-    
     private String status;
 
 	public Long getId() {
@@ -34,14 +32,6 @@ public class Admin {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getRealName() {
-		return realName;
-	}
-
-	public void setRealName(String realName) {
-		this.realName = realName;
 	}
 
 	public String getStatus() {

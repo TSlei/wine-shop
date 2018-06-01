@@ -1,8 +1,10 @@
 package com.shop.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.joda.time.DateTime;
+
 
 public class Order implements Serializable{
 	
@@ -36,7 +38,7 @@ public class Order implements Serializable{
     
     private String day;
     
-    private DateTime createTime;
+    private Date createTime;
 
 	public Long getAdminId() {
 		return adminId;
@@ -150,16 +152,12 @@ public class Order implements Serializable{
 		this.remark = remark;
 	}
 
-	public DateTime getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(DateTime createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
     
 }

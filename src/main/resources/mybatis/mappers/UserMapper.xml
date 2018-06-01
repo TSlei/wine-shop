@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.shop.web.mapper.UserMapper" >
 
-	<resultMap id="BaseUserResultMap" type="com.shop.entity.User">
+	<resultMap id="userResultMap" type="com.shop.entity.User">
 		<result column="id" property="id" jdbcType="BIGINT" />
 		<result column="userName" property="userName" jdbcType="VARCHAR" />
 		<result column="sex" property="sex" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
 		<result column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" property="createTime" />
 	</resultMap>
 
-	<select id="listUser" resultMap="BaseUserResultMap">
+	<select id="listUser" resultMap="userResultMap">
 		SELECT * FROM t_user where 1=1
 	 <![CDATA[ AND createTime >= #{startTime} ]]>
      <![CDATA[ AND createTime <= #{endTime} ]]>
