@@ -1,0 +1,50 @@
+	<table class="table table-bordered rutileTable table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th style="text-align:center;">业务单号</th>
+				<th style="text-align:center;">客户名称</th>
+				<th style="text-align:center;">手机号</th>
+				<th style="text-align:center;">地址</th>
+				<th style="text-align:center;">合同金额</th>
+				<th style="text-align:center;">下单时间</th>
+				<th style="text-align:center;">说明</th>
+				<th style="text-align:center;width:100px;">状态</th>
+				<th style="text-align:center;">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			#set($size = $result.list.size())
+			  #if($size==0)
+			    <tr><td colspan="9" align="center">没有数据!</td></tr> 
+			   #else
+				#foreach($obj in ${result.list})
+					#if($obj.orderDetailCount == 0)
+						<tr class="danger">
+							#else
+								<tr>
+					#end
+    				<td align="center">$obj.id</td>
+    				<td align="center">$obj.buyerName</td>
+    				<td align="center">$obj.buyerPhone</td>
+    				<td align="center">$obj.address</td>
+    				<td align="center">$obj.totalPrice 元</td>
+    				<td align="center">$velocityTool.getTime($!obj.createTime) </td>
+    				<td align="center">$!obj.note</td>
+					#if($obj.status == 0)
+    				<td align="center">未付款</td>
+						#elseif($obj.status == 1)
+							<td align="center">已付押金</td>
+							#elseif($obj.status == 2)
+								<td align="center">已付款</td>
+					#end
+    				<td align="center"><a href="/shop/purchase/listDetail?orderId=$obj.id">[查看订单详情]</a>
+					<a href="javascript:deleteOrder($obj.id);">[删除]</a>
+					<a href="javascript:showModal2($obj.id);">[修改]</a>
+					</td>
+    			</tr> 
+				#end
+			  #end
+			  
+		</tbody>
+	</table>
+		<div class="row DTTTFooter">#pageNation($result)</div>

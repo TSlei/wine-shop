@@ -1,0 +1,11 @@
+<div >
+<table >
+		#foreach($obj in $list)
+			<tr >
+				<td >
+						$obj.code
+                </td>
+			</tr>
+		#end
+</table>
+</div>

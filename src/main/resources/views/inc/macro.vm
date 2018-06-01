@@ -1,0 +1,79 @@
+#macro(pageNation $data)
+     <div id="pagination">
+    	#if($data.list.size() > 0)
+			#set($prevPage = ${data.prePage})
+    		#set($nextnPage = ${data.nextPage})
+			<a  
+				#if($data.pageNum ==1)
+				class="disabledPage" disabled="disabled" href="javascript:void(0)"
+				#else
+				class="toFirstPage"	pageNum="1"
+				#end 
+			>首页</a>
+			<a 
+				#if($data.pageNum ==1)
+					class="disabledPage" disabled="disabled" href="javascript:void(0)"
+				#else
+				 class="toPrePage" pageNum="$prevPage"
+				#end 
+            > 上一页 </a>
+			#set($offsetStart=1)
+			#set($offsetEnd=${data.pages})
+			#if($offsetEnd > 5)
+				#if($offsetEnd - ${data.pageNum} >= 2)
+					#set($offsetEnd = ${data.pageNum} + 2)
+				#end
+				#set($offsetStart = $offsetEnd - 4)
+				#if($offsetStart < 1)
+					#set($offsetStart = 1)
+					#set($offsetEnd = 5)
+				#end
+			#end
+			#foreach($foo in [$!offsetStart..$offsetEnd])
+				<a class="toTargetPage" pageNum="$foo"   #if($foo==${data.pageNum})class="currentPage"#end> $foo </a>
+			#end
+			<a 
+				#if($data.pageNum == $data.pages)
+					class="disabledPage" disabled="disabled"
+				#else
+				 class="toNextPage" pageNum="$nextnPage"
+				#end 
+            > 下一页
+			<a
+				#if($data.pageNum == $data.pages)
+				  class="disabledPage"	disabled="disabled" href="javascript:void(0)"
+				#else
+				 class="toLastPage" pageNum="$data.pages"
+				#end 
+				>尾页</a> 
+			当前第$!{data.pageNum}页,共$!{data.pages}页, 到第<input id="pageNation_pageNum" class="goPage" style="width:38px" type="text" value="" onblur="if(!/^[0-9]{0,}[1-9][0-9]{0,}$/.test(this.value)){ this.style.borderColor='red'} else{ this.style.borderColor='#e3e3e3'}"/>页
+			<a href="javascript:void(0);" class="toTargetPageBtn">确定</a>
+		#end
+	</div>
+	<div p_sortinfo="$!{data.orderBy}" p_isFirst=$!{data.isFirst} p_isLast=$!{data.isLast} p_currentpagenum="$!{data.pageNum}" p_totalsize="$!{data.total}" p_endrow="$!{data.endRow}" p_totalpagesnum="$!{data.pages}" p_pagesize="$!{data.pageSize}" p_startrow="$!{data.startRow}" style="display:none" class="paginator"></div>
+#end
+#macro(pageNation2 $data)
+ <div id="pagination2">
+	#if($data.pages > 0)
+	 <ul class="pagination"> 
+	  <li class="previous toPrePage" #if($data.pageNum ==1)  pageNum="1" #else pageNum="${data.prePage}" #end title="上一页"><a href="#">上一页</a></li>
+	  #set($offsetStart=1)
+			#set($offsetEnd=${data.pages})
+			#if($offsetEnd > 5)
+				#if($offsetEnd - ${data.pageNum} >= 2)
+					#set($offsetEnd = ${data.pageNum} + 2)
+				#end
+				#set($offsetStart = $offsetEnd - 4)
+				#if($offsetStart < 1)
+					#set($offsetStart = 1)
+					#set($offsetEnd = 5)
+				#end
+	   #end
+	  #foreach($foo in [$offsetStart..$offsetEnd])
+		<li #if($data.pageNum==$foo) class="active toTargetPage" #end class="toTargetPage" pageNum="$foo"><a href="javascript:void(0);">$foo</a></li>
+	  #end	
+	  <li class="next toNextPage" #if($data.pageNum ==$data.pages) pageNum="${data.pageNum}" #else pageNum="${data.nextPage}" #end title="下一页"><a href="javascript:void(0);">下一页</a></li>
+	#end
+  </ul>
+ </div>
+#end 

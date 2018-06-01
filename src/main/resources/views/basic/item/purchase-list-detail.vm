@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>商品管理</title>
+#parse("inc/head.vm")
+<link href="/assets/css/pagination.css" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/normalize.css">
+
+<style>
+	.glyphicon {
+	 font-size:10px;
+	}
+	.fill-content{
+	 margin:10px 0;
+	}
+	th{
+	    vertical-align: middle !important;
+	}
+  </style>
+</head>
+
+<body>
+<!-- Main Container -->
+#parse("inc/loading_container.vm")
+#parse("inc/navbar.vm")
+<div class="main-container container-fluid"> 
+	<!-- Page Container -->
+	<div class="page-container"> 
+		<!-- Page Sidebar -->
+		<div class="page-sidebar" id="sidebar"> 
+			<!-- Sidebar Menu --> 
+			<!-- /Sidebar Menu --> 
+			#parse("inc/sidebar_menu.vm")
+		</div>
+		<!-- /Page Sidebar --> 
+		<!-- Page Content -->
+		<div class="page-content"> 
+			<!-- Page Breadcrumb -->
+			<div class="page-breadcrumbs">
+				<ul class="breadcrumb">
+					<li> <i class="fa fa-home"></i> <a href="/shop/item/list">首页</a> </li>
+					<li> <a href="#">销售管理</a> </li>
+					<li class="active">业务清单</li>
+				</ul>
+			</div>
+			<!-- /Page Breadcrumb --> 
+			<!-- Page Header -->
+			<div class="page-header position-relative">
+				<div class="header-title">
+					<h1 data-rel="purchase_list">业务详情</h1>
+				</div>
+				<!--Header Buttons-->
+				<div class="header-buttons"> <a class="sidebar-toggler" href="#"> <i class="fa fa-arrows-h"></i> </a> <a class="refresh" id="refresh-toggler" href=""> <i class="glyphicon glyphicon-refresh"></i> </a> <a class="fullscreen" id="fullscreen-toggler" href="#"> <i class="glyphicon glyphicon-fullscreen"></i> </a> </div>
+				<!--Header Buttons End--> 
+			</div>
+			<!-- /Page Header --> 
+			<!-- Page Body -->
+			 <div class="page-body">
+				<div class="row">
+				 <div class="col-md-12">
+				  <div class="widget">
+					 <div class="widget-body bordered-left bordered-warning padding-top-20">
+						 <div class="row margin-bottom-20">
+						<div class="col-md-4 no-padding-right">
+                			<form action="" role="form" class="form-horizontal bv-form" id="tjsp" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                              <div class="modal-body">
+                              <input type="hidden" value="$orderId" name="orderId" id="orderId"/>
+                                    <div class="form-group has-feedback">
+                                      <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 商品编号 :</label>
+                                      <div class="col-sm-9 padding-left-10 padding-right-10">
+                        				<input id="itemCode1" name="itemCode" type="text" class="form-control" placeholder="请选择编号" autocomplete="o" />
+                                        <!-- <input placeholder="请输入商品编号,例如W34D4" name="itemCode" id="itemCode1" type="text" autocomplete="off" class="form-control">-->
+                        			  </div>
+                                    </div>
+                        			
+                                    <div class="form-group has-feedback">
+                                      <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 单价 :</label>
+                                      <div class="col-sm-9 padding-left-10 padding-right-10">
+                                        <input placeholder="请输入单价" name="price" id="price1" type="text" class="form-control">
+                        			  </div>
+                                    </div>
+                                    
+                        			<div class="form-group has-feedback">
+                                      <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 数量 :</label>
+                                      <div class="col-sm-9 padding-left-10 padding-right-10">
+                                        <input placeholder="请输入数量" name="number" id="number1" type="text" class="form-control">
+                        			  </div>
+                                    </div>
+                    	</div>
+                          <div class="text-right">
+                            <input type="button" onclick="addOrderDetail();" value="保存" class="btn btn-primary">
+                          </div>
+             		 </form>
+						</div>
+						 <div class="row margin-top-20">
+						<div class="col-md-4 no-padding-left" style="float:right;">
+						 <span style="font-family:华文中宋; color:blue;float:right;">注：此处关系到库存,录入时请仔细核对！</span>
+						</div>
+					  </div> 
+					  </div> 
+					  
+				  <div class="dashboard-box">
+					<div class="box-tabbs">
+					  <div class="tabbable">
+				      <div style="margin-top:20px;">
+								  <div id="noPaymetData" class="tab-pane active">
+									<div id="initTable">  
+										
+										<table class="table table-bordered rutileTable table-striped table-bordered table-hover">
+                                          <thead>
+                                            <tr>
+                                        	  <th style="text-align:center;">商品编号</th>
+                                        	  <th style="text-align:center;">商品名称</th>
+                                    		  <th style="text-align:center;">购买数量</th>
+                                    		  <th style="text-align:center;">单价</th>
+                                    		  <th style="text-align:center;">创建时间</th>
+                                    		  <th style="text-align:center;">操作</th>
+                                            </tr>
+                                          </thead>
+										  <tbody>
+											#set($size = $result.size())
+											#if($size==0)
+												<tr><td colspan="6" align="center">没有数据!</td></tr> 
+												#else
+													#foreach($obj in ${result})
+														<tr>
+															<td  align="center">$obj.itemCode</td>
+															<td  align="center">$obj.itemName</td>
+															<td  align="center">$obj.number</td>
+															<td  align="center">$obj.price</td>
+															<td  align="center">$!obj.updateTime</td>
+                                                            <td  align="center"><a href="javascript:deleteOrderDetail($obj.id);">[删除]</a></td>
+														</tr> 
+													#end
+											#end
+											
+										  </tbody>
+										</table> 
+    		
+
+</div>
+						  </div>
+						</div>
+							   </div>
+					</div>
+				</div>
+					</div>
+	              </div>
+		        </div>
+	<div class="row">
+		 <div class="col-md-12">
+	</div>
+</div>
+				
+			</div>
+			<!-- /Page Body --> 
+		</div>
+		<!-- /Page Content --> 
+	</div>
+	<!-- /Page Container --> 
+	<!-- Main Container --> 
+	</div>
+</div>
+<!--
+ <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" style="top: -10.5px;">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button aria-hidden="true" data-dismiss="modal" class="bootbox-close-button close" type="button">×</button>
+      <h4 class="modal-title">添加商品</h4>
+    </div>
+    <form action="" role="form" class="form-horizontal bv-form" id="tjsp" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+      <div class="modal-body">
+      <input type="hidden" value="$orderId" name="orderId" id="orderId"/>
+            <div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 商品编号 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+				<input id="demo1" type="text" class="span4" placeholder="Search cities..." autocomplete="o" />
+                <input placeholder="请输入商品编号,例如W34D4" name="itemCode" id="itemCode1" type="text" autocomplete="off" class="form-control">
+			  </div>
+            </div>
+			
+            <div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 单价 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入单价" name="price" id="price1" type="text" class="form-control">
+			  </div>
+            </div>
+            
+			<div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 数量 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入数量" name="number" id="number1" type="text" class="form-control">
+			  </div>
+            </div>
+	</div>
+      <div class="modal-footer">
+        <input type="button" onclick="addOrderDetail();" value="保存" class="btn btn-primary">
+      <button type="button" class="btn btn-default" data-dismiss="modal">取消 </button>
+      </div>
+      </form>
+    </div>
+  </div>
+	  </div> -->
+#parse("inc/footer.vm")
+<script src="/assets/js/bootstrap-typeahead.js"></script>
+<script src="/assets/js/item/detail.js"></script>
+</body>
+</html>

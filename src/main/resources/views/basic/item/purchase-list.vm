@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>商品管理</title>
+#parse("inc/head.vm")
+<link href="/assets/css/pagination.css" rel="stylesheet" />
+<style>
+	.glyphicon {
+	 font-size:10px;
+	}
+	.fill-content{
+	 margin:10px 0;
+	}
+	th{
+	    vertical-align: middle !important;
+	}
+  </style>
+</head>
+
+<body>
+<!-- Main Container -->
+#parse("inc/loading_container.vm")
+#parse("inc/navbar.vm")
+<div class="main-container container-fluid"> 
+	<!-- Page Container -->
+	<div class="page-container"> 
+		<!-- Page Sidebar -->
+		<div class="page-sidebar" id="sidebar"> 
+			<!-- Sidebar Menu --> 
+			<!-- /Sidebar Menu --> 
+			#parse("inc/sidebar_menu.vm")
+		</div>
+		<!-- /Page Sidebar --> 
+		<!-- Page Content -->
+		<div class="page-content"> 
+			<!-- Page Breadcrumb -->
+			<div class="page-breadcrumbs">
+				<ul class="breadcrumb">
+					<li> <i class="fa fa-home"></i> <a href="/shop/item/list">首页</a> </li>
+					<li> <a href="#">销售管理</a> </li>
+					<li class="active">业务清单</li>
+				</ul>
+			</div>
+			<!-- /Page Breadcrumb --> 
+			<!-- Page Header -->
+			<div class="page-header position-relative">
+				<div class="header-title">
+					<h1 data-rel="purchase_list">业务清单</h1>
+				</div>
+				<!--Header Buttons-->
+				<div class="header-buttons"> <a class="sidebar-toggler" href="#"> <i class="fa fa-arrows-h"></i> </a> <a class="refresh" id="refresh-toggler" href=""> <i class="glyphicon glyphicon-refresh"></i> </a> <a class="fullscreen" id="fullscreen-toggler" href="#"> <i class="glyphicon glyphicon-fullscreen"></i> </a> </div>
+				<!--Header Buttons End--> 
+			</div>
+			<!-- /Page Header --> 
+			<!-- Page Body -->
+			 <div class="page-body">
+				<div class="row">
+				 <div class="col-md-12">
+      <div class="widget">
+					 <div class="widget-body bordered-left bordered-warning padding-top-20">
+						
+                      <div class="row margin-bottom-20">
+						<div class="col-md-4 no-padding-right">
+					     <button class="btn expansionBtn btn-default collapsed" role="button" data-toggle="collapse" href="#searchArea" aria-expanded="false">展开</button>
+						 <button class="btn btn-blue" role="button" data-toggle="modal" data-target="#myModal">
+					                      新增业务   
+					        </button>
+						</div>
+						<div class="col-md-4 no-padding-left margin-top-20 " style="float:right;">
+                        <span style="font-family:华文中宋; color:blue;float:right;">注：红色代表未录入商品详情！</span>
+						</div>
+					  </div> 
+					  <form class="" role="form" method="post" id="searchForm" action="">
+					   <div id="searchArea" class="collapse">
+                       <div class="row">
+                         <div class="col-md-4">
+    						 <div class="form-horizontal">
+    						    <div class="form-group">
+    						    <label class="col-md-3 control-label no-padding-right no-padding-left" for="name">手机号:</label>
+    							<div class="col-md-9"> <input type="text" class="form-control" name="phone" id="phone"></div>
+    						 </div>
+						 </div>
+						</div>
+						 <div class="col-md-4">
+    					 <div class="form-horizontal">
+    						<div class="form-group">
+						   <label class="col-md-3 control-label no-padding-right no-padding-left" for="size">客户名称:</label>
+						   <div class="col-md-9"><input type="text" class="form-control" name="companyName" id="companyName"></div>
+						 </div>
+					  </div>
+					   </div>
+					   
+					    <div class="col-md-4">
+    					 <div class="form-horizontal">
+    						<div class="form-group">
+						   <label class="col-md-3 control-label no-padding-right no-padding-left" for="size">付款状态:</label>
+                           <div class="col-md-9">
+							<select class="form-control" name="searchstatus" id="searchstatus">
+                               <option selected="" value="-1">请选择状态</option>
+                               <option value="0">未付款</option>
+                               <option value="1">已付押金</option>
+                               <option value="2">已付款</option>
+							</select>
+						   </div>
+						 </div>
+					  </div>
+					   </div>
+					   
+				       </div>
+					   <div class="row">
+						    <div class="col-md-4">
+    						   <div class="form-horizontal">
+    						    <div class="form-group">
+    						       <label class="col-md-3 control-label no-padding-right no-padding-left" for="name">业务单号:</label>
+    							  <div class="col-md-9"> <input type="text" class="form-control" name="businessKey" id="businessKey"></div>
+    						      </div>
+						        </div>
+						     </div>
+							  <div class="col-md-4">
+    						   <div class="form-horizontal">
+    						    <div class="form-group">
+    						       <label class="col-md-3 control-label no-padding-right no-padding-left" for="name">地址:</label>
+    							  <div class="col-md-9"> <input type="text" class="form-control" name="createTime" id="createTime"></div>
+    						      </div>
+						        </div>
+						     </div>
+							   <div class="col-md-4">
+    						   <div class="form-horizontal" style="text-align:right;">
+    						       <button class="btn btn-blue searchBtn" type="button"><i class="fa fa-search"></i> 查询</button>
+								   <button class="btn btn-default resetBtn" type="reset"><i class="fa fa-undo"></i> 重置</button>
+    						      </div>
+						     </div>
+					   </div>
+					</div>
+					 </form>
+				  <div class="dashboard-box">
+					<div class="box-tabbs">
+					  <div class="tabbable">
+				      <div style="margin-top:20px;">
+								  <div id="noPaymetData" class="tab-pane active">
+									<div id="initTable">  
+										<!--
+										<table class="table table-bordered rutileTable table-striped table-bordered table-hover">
+                                          <thead>
+                                            <tr>
+                                        	  <th style="text-align:center;">业务单号</th>
+                                              <th style="text-align:center;">手机号</th>
+                                              <th style="text-align:center;">企业名称</th>
+                                        	  <th style="text-align:center;">产品名称</th>
+                                    		  <th style="text-align:center;">合同金额</th>
+                                    		  <th style="text-align:center;">创建时间</th>
+                                    		  <th style="text-align:center;width:100px;">状态</th>
+                                    		  <th style="text-align:center;">操作</th>
+                                            </tr>
+                                          </thead>
+                                                	<tbody><tr><td colspan="8" align="center">没有数据!</td></tr> 
+                                       </tbody></table> -->
+	
+    		
+	<div p_sortinfo="" p_isfirst="p_isLast=" p_currentpagenum="0" p_totalsize="0" p_endrow="0" p_totalpagesnum="0" p_pagesize="10" p_startrow="0" style="display:none" class="paginator"></div>
+
+</div>
+								 </div>
+								  <div id="processingData" class="tab-pane">
+									<div id="processingTable"></div>
+								 </div>
+								  <div id="noReadData" class="tab-pane">
+									<div id="readingTable"></div>
+								 </div>
+								  <div id="evaluationData" class="tab-pane">
+									<div id="evaluationTable"></div>
+								 </div>
+								  <div id="finishedData" class="tab-pane">
+									<div id="finishedTable"></div>
+									
+								 </div>
+								   <div id="abortData" class="tab-pane">
+									<div id="abortTable"></div>
+								 </div>
+						  </div>
+						</div>
+							   </div>
+					</div>
+				
+					   </div>
+					</div>
+	              </div>
+		        </div>
+	<div class="row">
+		 <div class="col-md-12">
+	</div>
+</div>
+				
+			</div>
+			<!-- /Page Body --> 
+		</div>
+		<!-- /Page Content --> 
+	</div>
+	<!-- /Page Container --> 
+	<!-- Main Container --> 
+	</div>
+</div>
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" style="top: -10.5px;">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button aria-hidden="true" data-dismiss="modal" class="bootbox-close-button close" type="button">×</button>
+      <h4 class="modal-title">新增业务</h4>
+    </div>
+    <form action="project-list.htm" role="form" class="form-horizontal bv-form" id="xzyw" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+      <div class="modal-body">
+			
+            <div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 客户名称 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入客户名称" name="buyerName" id="buyerName1" type="text" class="form-control">
+			  </div>
+            </div>
+			
+            <div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 手机号 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入手机号" name="buyerPhone" id="buyerPhone1" type="text" class="form-control">
+			  </div>
+            </div>
+            
+			<div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 地址 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入地址" name="address" id="address1" type="text" class="form-control">
+			  </div>
+            </div>
+			
+			<div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 合同金额 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入合同金额" name="totalPrice" id="totalPrice1" type="text" class="form-control">
+			  </div>
+            </div>
+			
+			<div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 状态 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+				<select class="form-control" name="status" id="status1">
+                               <option selected="" value="-1">请选择状态</option>
+                               <option value="0">未付款</option>
+                               <option value="1">已付押金</option>
+                               <option value="2">已付款</option>
+                       </select>
+			  </div>
+            </div>
+			
+			<div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 说明:</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <textarea rows="10" name="note" style="height:85px;" class="form-control alterClass"></textarea>
+			  </div>
+            </div>
+            
+		
+	</div>
+      <div class="modal-footer">
+        <input type="button" onclick="addOrder();" value="保存" class="btn btn-primary">
+      <button type="button" class="btn btn-default" data-dismiss="modal">取消 </button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+
+
+<div class="modal fade in" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" style="top: -10.5px;">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button aria-hidden="true" data-dismiss="modal" class="bootbox-close-button close" type="button">×</button>
+      <h4 class="modal-title">修改业务</h4>
+    </div>
+    <form action="project-list.htm" role="form" class="form-horizontal bv-form" id="xgyw" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+      <div class="modal-body">
+			<input type="hidden" name="id" id="id2"/>
+            <div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 客户名称 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入客户名称" name="buyerName" id="buyerName2" type="text" class="form-control">
+			  </div>
+            </div>
+			
+            <div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 手机号 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入手机号" name="buyerPhone" id="buyerPhone2" type="text" class="form-control">
+			  </div>
+            </div>
+            
+			<div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 地址 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入地址" name="address" id="address2" type="text" class="form-control">
+			  </div>
+            </div>
+			
+			<div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 合同金额 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <input placeholder="请输入合同金额" name="totalPrice" id="totalPrice2" type="text" class="form-control">
+			  </div>
+            </div>
+			
+			<div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 状态 :</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+				<select class="form-control" name="status" id="status2">
+                               <option selected="" value="-1">请选择状态</option>
+                               <option value="0">未付款</option>
+                               <option value="1">已付押金</option>
+                               <option value="2">已付款</option>
+                       </select>
+			  </div>
+            </div>
+			
+			<div class="form-group has-feedback">
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 说明:</label>
+              <div class="col-sm-9 padding-left-10 padding-right-10">
+                <textarea rows="10" name="note" id="note2" style="height:85px;" class="form-control alterClass"></textarea>
+			  </div>
+            </div>
+            
+		
+	</div>
+      <div class="modal-footer">
+        <input type="button" onclick="updateOrder();" value="保存" class="btn btn-primary">
+      <button type="button" class="btn btn-default" data-dismiss="modal">取消 </button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+#parse("inc/footer.vm")
+<script src="/assets/js/util/pagination.js"></script> 
+<script src="/assets/js/item/purchaseList.js"></script>
+</body>
+</html>
