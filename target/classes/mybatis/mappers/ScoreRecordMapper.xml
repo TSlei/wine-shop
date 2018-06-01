@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shop.mapper.ScoreRecordMapper">
+	
+	<resultMap id="BaseScordRecordResultMap" type="com.shop.entity.ScoreRecord">
+		<result column="id" property="id" jdbcType="BIGINT" />
+		<result column="userName" property="userName" jdbcType="VARCHAR" />
+		<result column="orderId" property="orderId" jdbcType="BIGINT" />
+		<result column="score" property="score" />
+		<result column="discount" property="discount" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" property="createTime" />
+	</resultMap>
+
+	<select id="getScoreRecordByName" resultType="BaseScordRecordResultMap">
+		SELECT * FROM t_score_record WHERE userName = #{userName}
+	</select>
+
+	<select id="listScoreRecord" resultType="BaseScordRecordResultMap">
+		SELECT * FROM t_score_record order by createTime
+	</select>
+
+	<insert id="insertScoreRecord" parameterType="com.shop.entity.ScoreRecord">
+		INSERT INTO t_score_record(userName, orderId, score, discount, remark, createTime) 
+		VALUES (#{userName}, #{orderId}, #{score}, #{discount}, #{remark}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+
+	<delete id="deleteScoreRecord">
+		DELETE
+		FROM t_score_record
+		WHERE id = #{id}
+	</delete>
+	
+	<update id="updateScoreRecord" parameterType="com.shop.entity.ScoreRecord">
+		UPDATE t_order
+		SET
+		userName = #{userName},
+		orderId = #{orderId},
+		score = #{score},
+		discount = #{discount},
+		remark = #{remark},
+		WHERE id = #{id};
+	</update>
+</mapper>

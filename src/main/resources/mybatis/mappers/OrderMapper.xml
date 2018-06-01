@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shop.mapper.OrderMapper">
+
+	<resultMap id="BaseOrderResultMap" type="com.shop.entity.Order">
+		<result column="id" property="id" jdbcType="BIGINT" />
+		<result column="userName" property="userName" jdbcType="VARCHAR" />
+		<result column="vipCode" property="vipCode" jdbcType="VARCHAR" />
+		<result column="productName" property="productName" jdbcType="VARCHAR" />
+		<result column="weight" property="weight" />
+		<result column="price" property="price" />
+		<result column="giftProductName" property="giftProductName" jdbcType="VARCHAR" />
+		<result column="giftPrice" property="giftPrice" />
+		<result column="giftWeight" property="giftWeight" />
+		<result column="year" property="year" jdbcType="VARCHAR" />
+		<result column="month" property="month" jdbcType="VARCHAR" />
+		<result column="day" property="day" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" property="createTime" />
+	</resultMap>
+
+	<select id="listOrder" resultMap="BaseOrderResultMap">
+		SELECT * FROM t_order where 1=1
+	 <![CDATA[ AND createTime >= #{startTime} ]]>
+     <![CDATA[ AND createTime <= #{endTime} ]]>
+		ORDER BY createTime DESC
+	</select>
+
+	<insert id="insertOrder" parameterType="com.shop.entity.Order">
+		INSERT INTO t_order(userName, vipCode, productName, weight, price, giftProductName, giftPrice, giftWeight, year, month, day, remark, createTime) 
+		VALUES (#{userName}, #{vipCode}, #{productName}, #{weight}, #{price}, #{giftProductName}, #{giftPrice}, #{giftWeight}, #{year}, #{month}, #{day}, #{remark}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+
+	<delete id="deleteOrder">
+		DELETE FROM t_order WHERE id = #{id}
+	</delete>
+
+	<select id="getOrderById" resultType="com.shop.entity.Order">
+		SELECT * FROM t_order WHERE id = #{id}
+	</select>
+	
+	<select id="getOrderByName" resultType="com.shop.entity.Order">
+		SELECT * FROM t_order WHERE userName = #{userName}
+	</select>
+
+	<update id="updateOrder" parameterType="com.shop.entity.Order">
+		UPDATE t_order
+		SET
+		userName = #{userName},
+		vipCode = #{vipCode},
+		productName = #{productName},
+		weight = #{weight},
+		price = #{price},
+		giftProductName = #{giftProductName},
+		giftPrice = #{giftPrice},
+		giftWeight = #{giftWeight},
+		year = #{year},
+		month = #{month},
+		day = #{day},
+		remark = #{remark}
+		WHERE id = #{id};
+	</update>
+
+</mapper>
