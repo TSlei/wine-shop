@@ -9,6 +9,20 @@ public class Admin {
     private String password;
     
     private String status;
+    
+    
+
+	public Admin() {
+		super();
+	}
+	
+	public Admin(String name, String password) {
+		super();
+		this.name = name;
+		this.password = password;
+	}
+
+
 
 	public Long getId() {
 		return id;
