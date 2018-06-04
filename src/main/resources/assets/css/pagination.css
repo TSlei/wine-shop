@@ -1,0 +1,20 @@
+#pagination{float:right;padding:5px;}
+#pagination a:hover{text-decoration:none;color:#FF0000;}
+#pagination a{color:#606AEC; cursor: pointer;}
+#pagination .disabledPage{color:#666;}
+#pagination .disabledPage:hover{color:#666;}
+.sonnenjahrTable th{
+	text-align: center;
+}
+.sonnenjahrTable td{
+	text-align: center;
+	vertical-align: middle !important;
+}
+.lang{
+	text-align:center;
+	cursor:pointer;
+}
+.lang:hover,.lang a:hover{
+ background-color:#eee !important;	
+	
+}

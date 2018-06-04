@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.shop.entity.Admin;
 import com.shop.service.AdminService;
 import com.shop.utils.AdminUtils;
@@ -25,7 +26,7 @@ public class AdminController {
 	
 	@RequestMapping("/index")
 	public ModelAndView loginPage(){
-		ModelAndView model = new ModelAndView("/basic/item/login");
+		ModelAndView model = new ModelAndView("basic/item/login");
 		return model;
 	}
 	
@@ -64,4 +65,17 @@ public class AdminController {
 		return model;
 	}
 	
+	@RequestMapping("/page")
+	public ModelAndView gotoEchartsPage(){
+		ModelAndView model = new ModelAndView("/basic/echarts/echarts-page");
+		return model;
+	}
+	
+	@RequestMapping("/getAllDate")
+	@ResponseBody
+	public JSONObject getAllDate(Integer yearNum){
+//		JSONObject selectMonthTheSales = orderService.selectMonthTheSales(yearNum);
+		JSONObject selectMonthTheSales = null;
+		return selectMonthTheSales;
+	}
 }
