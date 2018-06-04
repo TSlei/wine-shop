@@ -3,8 +3,6 @@ package com.shop.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.joda.time.DateTime;
-
 public class ScoreRecord implements Serializable{
 	
 	private static final long serialVersionUID = 9006194155186213884L;

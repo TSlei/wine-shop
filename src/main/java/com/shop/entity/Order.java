@@ -3,8 +3,6 @@ package com.shop.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.joda.time.DateTime;
-
 
 public class Order implements Serializable{
 	
