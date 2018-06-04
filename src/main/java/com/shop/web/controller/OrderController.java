@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value="/shop")
-public class ItemController {
+public class OrderController {
 
 //	@Autowired
 //	private ItemService itemService;
@@ -17,9 +17,9 @@ public class ItemController {
 //	private OrderDetailService orderDetailService;
 	
 	
-	@RequestMapping(value="/item/list")
-	public ModelAndView toItemList(){
-		ModelAndView model = new ModelAndView("basic/item/item-list");
+	@RequestMapping(value="/order")
+	public ModelAndView toOrderPage(){
+		ModelAndView model = new ModelAndView("basic/item/order-list");
 		return model;
 		
 	}
@@ -71,11 +71,11 @@ public class ItemController {
 //		return i;
 //	}
 //	
-//	@RequestMapping(value="/purchase/list")
-//	public ModelAndView toPurchaseList(){
-//		ModelAndView model = new ModelAndView("/basic/item/purchase-list");
-//		return model;
-//	}
+	@RequestMapping(value="/purchase/list")
+	public ModelAndView toPurchaseList(){
+		ModelAndView model = new ModelAndView("/basic/item/purchase-list");
+		return model;
+	}
 //	
 //	@RequestMapping(value="/purchase/listTable")
 //	public ModelAndView toPurchaseListTable(Integer pageNum,Integer pageSize,Integer status){

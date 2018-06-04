@@ -37,7 +37,7 @@ public class AdminController {
 		Admin admin = new Admin(name, password);
 		if(admin != null){
 			String uuid = UUID.randomUUID().toString();
-			CookieUtil.addCookie(response, CookieUtil.LOGIN_COOKIE_KEY, uuid, 30);
+			CookieUtil.addCookie(response, CookieUtil.LOGIN_COOKIE_KEY, uuid, 30000);
 			request.getSession().setAttribute(uuid, admin);
 			return 1;
 		}
@@ -50,24 +50,6 @@ public class AdminController {
 		ModelAndView model = new ModelAndView("/basic/item/login");
 		CookieUtil.removeCookie(response, CookieUtil.LOGIN_COOKIE_KEY);
 		request.getSession().invalidate();
-		return model;
-	}
-	
-	/** 测试 */
-	@RequestMapping("/test")
-	public ModelAndView loginTest(HttpServletRequest request, HttpServletResponse response){
-		ModelAndView model = new ModelAndView("/basic/item/test");
-		Admin admin = AdminUtils.getCurrentAdmin(request);
-		if(null != admin){
-			System.out.println("name:" + admin.getName());
-			System.out.println("password:" + admin.getPassword());
-		}
-		return model;
-	}
-	
-	@RequestMapping("/page")
-	public ModelAndView gotoEchartsPage(){
-		ModelAndView model = new ModelAndView("/basic/echarts/echarts-page");
 		return model;
 	}
 	

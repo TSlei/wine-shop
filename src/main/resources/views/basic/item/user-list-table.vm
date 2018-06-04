@@ -1,0 +1,41 @@
+	<table class="table rutileTable table-bordered table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th style="text-align:center;">商品编号</th>
+				<th style="text-align:center;">商品名称</th>
+				<th style="text-align:center;">商品品牌</th>
+				<th style="text-align:center;">进价</th>
+				<th style="text-align:center;">商品库存</th>
+				<th style="text-align:center;">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			#set($size = $result.list.size())
+			  #if($size==0)
+			    <tr><td colspan="6" align="center">没有数据!</td></tr> 
+			   #else
+				#foreach($obj in ${result.list})
+					#if($obj.num < 0)
+							<tr class="danger">
+						#elseif( $obj.num < 2)
+							<tr class="warning">
+								#else
+							<tr>
+						#end
+        				<td align="center">$obj.code</td>
+        				<td align="center">$obj.name</td>
+        				<td align="center">$obj.makerName</td>
+        				<td align="center">$obj.price</td>
+        				<td align="center">$obj.num</td>
+        				<td align="center">
+        					<button class="detailBtn btn btn-default" onclick="check(this,$obj.id);">查看说明</button>
+        					<button class="updateBtn btn btn-default" style="margin-left:5px;"  data-toggle="modal" onclick="showModel($obj.id);">修改</button>
+							<button class="detailBtn btn btn-default" onclick="delItem($obj.id);">删除</button>
+						</td>
+							
+        			</tr>
+				#end
+			  #end
+		</tbody>
+	</table>
+		<div class="row DTTTFooter">#pageNation($result)</div>

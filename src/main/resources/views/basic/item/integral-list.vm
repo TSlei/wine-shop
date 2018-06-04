@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8" />
-<title>商品管理</title>
+<title>积分管理</title>
 
 #parse("inc/head.vm")
 <link href="/assets/css/pagination.css" rel="stylesheet" />
@@ -39,15 +39,15 @@
 			<div class="page-breadcrumbs">
 				<ul class="breadcrumb">
 					<li> <i class="fa fa-home"></i> <a href="/shop/item/list">首页</a> </li>
-					<li> <a href="#">商品管理</a> </li>
-					<li class="active">商品列表</li>
+					<li> <a href="#">积分管理</a> </li>
+					<li class="active">积分列表</li>
 				</ul>
 			</div>
 			<!-- /Page Breadcrumb --> 
 			<!-- Page Header -->
 			<div class="page-header position-relative">
 				<div class="header-title">
-					<h1 data-rel="item_list">商品列表</h1>
+					<h1 data-rel="integral_list">积分列表</h1>
 				</div>
 				<!--Header Buttons-->
 				<div class="header-buttons"> <a class="sidebar-toggler" href="#"> <i class="fa fa-arrows-h"></i> </a> <a class="refresh" id="refresh-toggler" href=""> <i class="glyphicon glyphicon-refresh"></i> </a> <a class="fullscreen" id="fullscreen-toggler" href="#"> <i class="glyphicon glyphicon-fullscreen"></i> </a> </div>
@@ -64,32 +64,22 @@
 									<div class=" row"> 
 										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-horizontal">
 											<div class="form-group margin-bottom-10">
-												<label for="registtime" class="col-md-2 control-label no-padding-right">商品编号：</label>
+												<label for="registtime" class="col-md-2 control-label no-padding-right">ID：</label>
 												<div class="col-md-10">
-														<input type="text" class="form-control" id="code" name="registerTime" value="" placeholder="请输入商品编号,点击搜索">
+														<input type="text" class="form-control" id="code" name="registerTime" value="" placeholder="请输入ID,点击搜索">
 												</div>
 											</div>
 										</div>
 										
 										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-horizontal">
 											<div class="form-group margin-bottom-10">
-												<label for="phone" class="col-md-2 control-label no-padding-right">商品名称：</label>
+												<label for="phone" class="col-md-2 control-label no-padding-right">名称：</label>
 												<div class="col-md-10">
-													<input name="" type="text" id="name" class="form-control" value="" placeholder="请输入商品名称,点击搜索">
+													<input name="" type="text" id="name" class="form-control" value="" placeholder="请输入名称,点击搜索">
 												</div>
 											</div>
 										</div>
 										
-									</div>
-									<div class=" row">
-										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-horizontal">
-											<div class="form-group margin-bottom-10">
-												<label for="phone" class="col-md-2 control-label no-padding-right">商品品牌：</label>
-												<div class="col-md-10">
-													<input name="mobile" type="text" id="makerName" class="form-control" value="" placeholder="请输入商品品牌,点击搜索">
-												</div>
-											</div>
-										</div>
 									</div>
 									<div class=" row">
 										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-horizontal">
@@ -118,7 +108,6 @@
 					        </button>
 						</div>
 						<div class="col-md-4 no-padding-left margin-top-10" style="float:right;">
-						 <span style="font-family:华文中宋; color:blue;float:right;">注：红色代表库存透支！<br/>&nbsp;&nbsp;黄色代表库存量少！</span>
 						</div>
 					  </div>
 				<div id="myTabContent" class="">

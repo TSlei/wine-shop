@@ -44,7 +44,7 @@ $.ajax({
 		   alert("登录失败");
 	   }else{
 		   alert("登录成功");
-		   location.href = "/shop/item/list";
+		   location.href = "/shop/user";
 	   }
    }
 });
