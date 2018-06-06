@@ -1,13 +1,12 @@
 package com.shop.service;
 
-import java.util.List;
-
+import com.github.pagehelper.PageInfo;
 import com.shop.entity.User;
 import com.shop.entity.request.RequestParam;
 
 public interface UserService {
 	
-	List<User> listUser(RequestParam request);
+	PageInfo<User> listUser(RequestParam request);
 	
 	Integer insertUser(User user);
 	

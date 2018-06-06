@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.shop.entity.User;
 import com.shop.entity.request.RequestParam;
 import com.shop.mapper.UserMapper;
@@ -18,12 +19,12 @@ public class UserServiceImpl implements UserService{
 	private UserMapper userMapper;
 
 	@Override
-	public List<User> listUser(RequestParam request) {
+	public PageInfo<User> listUser(RequestParam request) {
 		int pageSize = request.getPageSize();;
 		int currentPageNum = request.getPageNum();
 		PageHelper.startPage(currentPageNum, pageSize, true);
 		List<User> users = userMapper.listUser(request);
-		return users;
+		return new PageInfo<User>(users);
 	}
 
 	@Override

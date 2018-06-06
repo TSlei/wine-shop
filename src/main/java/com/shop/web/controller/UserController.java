@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageInfo;
 import com.shop.entity.User;
 import com.shop.entity.request.RequestParam;
 import com.shop.service.UserService;
@@ -31,7 +32,7 @@ public class UserController {
 	
 	@RequestMapping("/user/table")
 	public ModelAndView userTable(HttpServletRequest request, RequestParam requestParam){
-		List<User> userList = userSerivce.listUser(requestParam);
+		PageInfo<User> userList = userSerivce.listUser(requestParam);
 		ModelAndView model = new ModelAndView("basic/item/user-list-table");
 		model.addObject("userList", userList);
 		return model;
