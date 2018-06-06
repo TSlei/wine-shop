@@ -11,7 +11,7 @@ import com.shop.entity.request.RequestParam;
 @Mapper
 public interface UserMapper {
 	
-	List<User> listUser(@Param("request")RequestParam requestParam);
+	List<User> listUser(RequestParam requestParam);
 	
 	Integer insertUser(User user);
 	
