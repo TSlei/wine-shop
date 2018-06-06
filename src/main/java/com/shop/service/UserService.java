@@ -10,10 +10,12 @@ public interface UserService {
 	
 	Integer insertUser(User user);
 	
-    User getUserById(Integer id);
+    User getUserById(Long id);
     
     User getUserByName(String name);
     
     Integer updateUser(User user);
+    
+    Integer deleteUser(Long id);
     
 }

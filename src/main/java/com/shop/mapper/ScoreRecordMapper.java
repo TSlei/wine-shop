@@ -15,7 +15,7 @@ public interface ScoreRecordMapper {
 	
 	Integer insertScoreRecord(ScoreRecord scoreRecord);
 	
-	Integer deleteScoreRecord(Integer id);
+	Integer deleteScoreRecord(Long id);
 	
 	Integer updateScoreRecord(ScoreRecord scoreRecord);
 }

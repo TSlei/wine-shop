@@ -10,9 +10,9 @@ public interface OrderService {
 	
 	Integer insertOrder(Order order);
 	
-    Integer deleteOrder(Integer orderId);
+    Integer deleteOrder(Long orderId);
     
-    Order getOrderById(Integer orderId);
+    Order getOrderById(Long orderId);
     
     Integer updateOrder(Order order);
     

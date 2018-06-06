@@ -14,6 +14,6 @@ public interface ScoreRecordService {
 	
 	Integer updateScoreRecord(ScoreRecord scoreRecord);
 	
-	Integer deleteScoreRecord(Integer id);
+	Integer deleteScoreRecord(Long id);
 	
 }

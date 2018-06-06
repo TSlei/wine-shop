@@ -192,53 +192,47 @@
     </div>
     <form action="project-list.htm" role="form" class="form-horizontal bv-form" id="xgkc" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
       <div class="modal-body">
-			<input type="hidden" name="id" id="id2"/>
-            <div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 商品编号 :</label>
-              <div class="col-sm-9 padding-left-10 padding-right-10">
-                <input placeholder="请输入商品编号,很重要" name="code" id="code2" type="text" class="form-control">
-			  </div>
-            </div>
+			<input type="hidden" name="id" id="update-id"/>
 			
             <div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 生产厂家 :</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 用户名 :</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-                <input placeholder="请输入生产厂家" name="makerName" id="makerName2" type="text" class="form-control">
+                <input placeholder="请输入用户名" name="userName" id="update-userName" type="text" class="form-control">
 			  </div>
             </div>
             
 			<div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 商品名称 :</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 性别 :</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-                <input placeholder="请输入商品名称" name="name" id="name2" type="text" class="form-control">
+                <input placeholder="请输入商品名称" name="sex" id="update-sex" type="text" class="form-control">
 			  </div>
             </div>
 			
 			<div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 进价 :</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 手机号 :</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-                <input placeholder="请输入进价" name="price" id="price2"  type="text" class="form-control">
+                <input placeholder="请输入手机号" name="mobile" id="update-mobile" type="text" class="form-control">
 			  </div>
             </div>
 			
 			<div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 进货数量 :</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 会员编码 :</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-				<input placeholder="请输入进货数量" name="num" id="num2" type="text" class="form-control">
+				<input placeholder="请输入会员编码" name="vipCode" id="update-vipCode" type="text" class="form-control">
 			  </div>
             </div>
 			
 			<div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 说明:</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 备注:</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-                <textarea rows="10" name="detail" id="detail2" style="height:85px;" class="form-control alterClass"></textarea>
+                <textarea rows="10" name="remark" id="update-remark" style="height:85px;" class="form-control alterClass"></textarea>
 			  </div>
             </div>
             
 		
 	</div>
       <div class="modal-footer">
-        <input type="button" onclick="updateItem();" value="保存" class="btn btn-primary">
+        <input type="button" onclick="updateUser();" value="保存" class="btn btn-primary">
       <button type="button" class="btn btn-default" data-dismiss="modal">取消 </button>
       </div>
       </form>

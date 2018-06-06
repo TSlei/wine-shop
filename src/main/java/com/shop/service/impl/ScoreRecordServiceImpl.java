@@ -28,7 +28,7 @@ public class ScoreRecordServiceImpl implements ScoreRecordService{
 	}
 	
 	@Override
-	public Integer deleteScoreRecord(Integer id) {
+	public Integer deleteScoreRecord(Long id) {
 		
 		Integer result = scoreRecordMapper.deleteScoreRecord(id);
 		return result;

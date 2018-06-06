@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.shop.entity.User;
 import com.shop.mapper.UserMapper;
 import com.shop.service.UserService;
+import com.shop.utils.AdminUtils;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -23,12 +24,13 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public Integer insertUser(User user) {
+
 		Integer result = userMapper.insertUser(user);
 		return result;
 	}
 
 	@Override
-	public User getUserById(Integer id) {
+	public User getUserById(Long id) {
 		User user = userMapper.getUserById(id);
 		return user;
 	}
@@ -43,6 +45,11 @@ public class UserServiceImpl implements UserService{
 	public Integer updateUser(User user) {
 		Integer result = userMapper.updateUser(user);
 		return result;
+	}
+
+	@Override
+	public Integer deleteUser(Long id) {
+		return userMapper.deleteUser(id);
 	}
 	
 	

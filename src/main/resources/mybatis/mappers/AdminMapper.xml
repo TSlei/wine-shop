@@ -3,6 +3,6 @@
 <mapper namespace="com.shop.mapper.AdminMapper" >
 
 	<select id="login" resultType="com.shop.entity.Admin">
-	SELECT * FROM t_admin WHERE name=#{name} AND password = #{passWord}
+	SELECT * FROM t_admin WHERE name=#{name} AND password = #{password}
 	</select>
 </mapper>

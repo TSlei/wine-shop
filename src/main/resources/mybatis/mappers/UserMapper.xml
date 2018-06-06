@@ -22,6 +22,7 @@
 		<if test="endTime != null and endTime !=''" >
      		 AND createTime <![CDATA[ <= ]]> #{endTime}
      	</if>
+     	and adminId = 1
 		ORDER BY createTime DESC
 	</select>
 	
@@ -34,13 +35,12 @@
 	</select>
 
 	<insert id="insertUser" parameterType="com.shop.entity.User">
-		INSERT INTO t_user(userName, sex, mobile, vipCode, restScore, remark, createTime) 
-		VALUES (#{userName}, #{sex}, #{mobile}, #{vipCode}, #{restScore}, #{remark}, #{createTime,jdbcType=TIMESTAMP})
+		INSERT INTO t_user(adminId, userName, sex, mobile, vipCode, restScore, remark, createTime) 
+		VALUES (#{adminId},#{userName}, #{sex}, #{mobile}, #{vipCode}, #{restScore}, #{remark}, #{createTime,jdbcType=TIMESTAMP})
 	</insert>
 	
 	<update id="updateUser" parameterType="com.shop.entity.User">
 		UPDATE t_user
-		SET
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="userName != null and userName !=''" >  
 	        userName = #{userName}, 
@@ -63,5 +63,9 @@
       	</trim>
 		WHERE id = #{id};
 	</update>
+	
+	<delete id="deleteUser" parameterType="java.lang.Long">
+		DELETE FROM t_user where id = ${id}
+	</delete>
 
 </mapper>

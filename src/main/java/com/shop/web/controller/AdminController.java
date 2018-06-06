@@ -33,8 +33,8 @@ public class AdminController {
 	@RequestMapping("/login")
 	@ResponseBody
 	public Integer login(HttpServletRequest request, HttpServletResponse response, String name, String password){
-//		Admin admin = adminService.login(name, password);
-		Admin admin = new Admin(name, password);
+		Admin admin = adminService.login(name, password);
+//		Admin admin = new Admin(name, password);
 		if(admin != null){
 			String uuid = UUID.randomUUID().toString();
 			CookieUtil.addCookie(response, CookieUtil.LOGIN_COOKIE_KEY, uuid, 30000);

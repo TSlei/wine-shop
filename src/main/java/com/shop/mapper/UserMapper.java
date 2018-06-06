@@ -14,10 +14,12 @@ public interface UserMapper {
 	
 	Integer insertUser(User user);
 	
-    User getUserById(Integer id);
+    User getUserById(Long id);
     
     User getUserByName(String name);
     
     Integer updateUser(User user);
+    
+    Integer deleteUser(@Param("id")Long id);
     
 }

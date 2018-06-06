@@ -14,9 +14,9 @@ public interface OrderMapper {
 
     List<Order> listOrder(@Param("startTime")String startTime, @Param("endTime")String endTime);
     
-    Integer deleteOrder(@Param("id")Integer id);
+    Integer deleteOrder(@Param("id")Long id);
     
-    Order getOrderById(@Param("id")Integer id);
+    Order getOrderById(@Param("id")Long id);
     
     Integer updateOrder(Order order);
     

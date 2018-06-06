@@ -30,14 +30,14 @@ $(function(){
 
 function login(){
 	var name = $("#name").val();
-	var passWord = $("#password").val();
+	var password = $("#password").val();
 	
 $.ajax({
    type: "POST",
    url: "/shop/login",
    data: {
    		"name":name,
-		"passWord":passWord
+		"password":password
    },
    success: function(msg){
 	   if(msg == 0){

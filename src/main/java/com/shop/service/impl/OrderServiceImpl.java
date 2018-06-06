@@ -26,12 +26,12 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public Integer deleteOrder(Integer id) {
+	public Integer deleteOrder(Long id) {
 		return mapper.deleteOrder(id);	
 	}
 
 	@Override
-	public Order getOrderById(Integer id) {
+	public Order getOrderById(Long id) {
 		return mapper.getOrderById(id);
 	}
 

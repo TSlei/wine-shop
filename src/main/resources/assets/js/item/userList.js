@@ -33,43 +33,16 @@ function initTableFunction(){
 
 
 
-
-
-
-function updateUser(adminId){
-	$('#myModal2').modal("show");
+function addUser(){
 	
-	$('#myModal2').on('shown.bs.modal', function () {
-		$.ajax({
-			type:"POST",
-			url: "/shop/user/getUserById",
-			data:{
-				"id":adminId
-			},
-			 success: function(data){
-				 alert(data);
-			 },
-			 dataType:"json"
-		});
-		
-		$('#myModal2').off('shown.bs.modal');
-	});
-	
-}
-
-	function addUser(){
-		alert("11");
-		var userName = $("#userName").val().trim();
-		$("#userName").val(userName);
-		
-		var sex = $("#sex").val().trim();
-		$("#sex").val(sex);
-		
-		var mobile = $("#mobile").val().trim();
-		$("#mobile").val(mobile);
-		
-		var vipCode = $("#vipCode").val().trim();
-		$("#vipCode").val(vipCode);
+	var userName = $("#userName").val().trim();
+	$("#userName").val(userName);	
+	var sex = $("#sex").val().trim();
+	$("#sex").val(sex);
+	var mobile = $("#mobile").val().trim();
+	$("#mobile").val(mobile);
+	var vipCode = $("#vipCode").val().trim();
+	$("#vipCode").val(vipCode);
 		
 	
 	if(userName=='' || vipCode ==''){
@@ -98,26 +71,47 @@ function updateUser(adminId){
 	
 }
 
-function updateItem(){
-	var code = $("#code2").val().trim();
-	code = code.toUpperCase();
-	$("#code2").val(code);
-	var makerName = $("#makerName2").val().trim();
-	$("#makerName2").val(makerName)
-	var name = $("#name2").val().trim();
-	$("#name2").val(name);
-	var price = $("#price2").val().trim();
-	$("#price2").val(price);
-	var num = $("#num2").val().trim();
-	$("#num2").val(num);
+//修改回显
+function showUpdateInfo(adminId){
+
+	$('#myModal2').modal("show");
 	
-	if(code=='' || makerName =='' || name =='' ||price =='' ||num ==''){
+	$('#myModal2').on('shown.bs.modal', function () {
+		$.ajax({
+			type:"POST",
+			url: "/shop/user/getUserById",
+			data:{
+				"id":adminId
+			},
+			 success: function(data){
+				 $("#update-id").val(data.id);
+				 $("#update-userName").val(data.userName);
+				 $("#update-sex").val(data.sex);
+				 $("#update-mobile").val(data.mobile);
+				 $("#update-vipCode").val(data.vipCode);
+				 $("#update-remark").val(data.remark);
+			 },
+			 dataType:"json"
+		});
+		
+		$('#myModal2').off('shown.bs.modal');
+	});
+	
+}
+
+function updateUser(){
+	
+	var userName = $("#update-userName").val().trim();
+	$("#update-userName").val(userName);	
+	var sex = $("#update-sex").val().trim();
+	$("#update-sex").val(sex);
+	var mobile = $("#update-mobile").val().trim();
+	$("#update-mobile").val(mobile);
+	var vipCode = $("#update-vipCode").val().trim();
+	$("#update-vipCode").val(vipCode);
+	
+	if(userName=='' || vipCode ==''){
 		alert("输入信息不完整");
-		return;
-	}
-	
-	if(isNaN(price)){
-		alert("金额只能输入数字!");
 		return;
 	}
 	
@@ -125,11 +119,11 @@ function updateItem(){
 	
 	$.ajax({
 		type:"POST",
-		url: "/shop/item/updateItem",
+		url: "/shop/user/updateUserById",
 		data:data,
 		 success: function(msg){
 		     if(msg == 0){
-		    	 alert("商品编号已存在!");
+		    	 alert("修改失败!");
 		     }
 		     if(msg == 1){
 		    	 alert("修改成功!");
@@ -146,13 +140,13 @@ function delItem(itemId){
 	if(confirm('是否删除？？？')){
 		$.ajax({
 			type:"POST",
-			url: "/shop/item/delItem",
+			url: "/shop/user/deleteUserById",
 			data:{
-				"itemId":itemId
+				"id":itemId
 			},
 			 success: function(msg){
 			     if(msg == 0){
-			    	 alert("该商品有订单存在,不能删除!");
+			    	 alert("删除失败!");
 			     }
 			     if(msg == 1){
 			    	 alert("删除成功!");
