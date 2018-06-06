@@ -1,41 +1,41 @@
 	<table class="table rutileTable table-bordered table-striped table-bordered table-hover">
 		<thead>
 			<tr>
-				<th style="text-align:center;">商品编号</th>
-				<th style="text-align:center;">商品名称</th>
-				<th style="text-align:center;">商品品牌</th>
-				<th style="text-align:center;">进价</th>
-				<th style="text-align:center;">商品库存</th>
-				<th style="text-align:center;">操作</th>
+				#*<th style="text-align:center;">编号</th>*#
+				<th style="text-align:center;">用户编号</th>
+				<th style="text-align:center;">姓名</th>
+				<th style="text-align:center;">性别</th>
+				<th style="text-align:center;">手机号</th>
+				<th style="text-align:center;">会员编号</th>
+				<th style="text-align:center;">备注</th>
+				<th style="text-align:center;">剩余积分</th>
+				<th style="text-align:center;">创建时间</th>
+				<th colspan="3" style="text-align:center;">操作</th>
 			</tr>
 		</thead>
-		<tbody>
-			#set($size = $result.list.size())
-			  #if($size==0)
-			    <tr><td colspan="6" align="center">没有数据!</td></tr> 
-			   #else
-				#foreach($obj in ${result.list})
-					#if($obj.num < 0)
-							<tr class="danger">
-						#elseif( $obj.num < 2)
-							<tr class="warning">
-								#else
-							<tr>
-						#end
-        				<td align="center">$obj.code</td>
-        				<td align="center">$obj.name</td>
-        				<td align="center">$obj.makerName</td>
-        				<td align="center">$obj.price</td>
-        				<td align="center">$obj.num</td>
-        				<td align="center">
-        					<button class="detailBtn btn btn-default" onclick="check(this,$obj.id);">查看说明</button>
-        					<button class="updateBtn btn btn-default" style="margin-left:5px;"  data-toggle="modal" onclick="showModel($obj.id);">修改</button>
-							<button class="detailBtn btn btn-default" onclick="delItem($obj.id);">删除</button>
-						</td>
-							
-        			</tr>
-				#end
-			  #end
+		
+        <tbody>
+			#if($null.isNull($userList) || $userList.size()==0)
+				<tr><td colspan="6" align="center">没有数据!</td></tr>
+				#else
+                   #foreach ($user in $userList)
+                			#*<td align="center">$user.id</td>*#
+                			<td align="center">$user.adminId</td>
+                			<td align="center">$user.userName</td>
+                			<td align="center">$user.sex</td>
+                			<td align="center">$user.mobile</td>
+							<td align="center">$user.vipCode</td>
+                			<td align="center">$user.remark</td>
+                			<td align="center">$user.restScore</td>
+							<td align="center">$user.createTime</td>
+                			<td align="center">
+                				<button class="detailBtn btn btn-default" onclick="check(this,$user.id);">查看说明</button>
+                				<button class="updateBtn btn btn-default" style="margin-left:5px;"  data-toggle="modal" onclick="updateUser($user.id);">修改</button>
+        						<button class="detailBtn btn btn-default" onclick="delItem($user.id);">删除</button>
+        					</td>
+        				</tr>
+                   #end
+			#end
 		</tbody>
 	</table>
-		<div class="row DTTTFooter">#pageNation($result)</div>
+	<div class="row DTTTFooter">#pageNation($result)</div>

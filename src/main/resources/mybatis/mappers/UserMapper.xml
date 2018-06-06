@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.shop.web.mapper.UserMapper" >
+<mapper namespace="com.shop.mapper.UserMapper" >
 
 	<resultMap id="userResultMap" type="com.shop.entity.User">
 		<result column="id" property="id" jdbcType="BIGINT" />
@@ -15,8 +15,12 @@
 
 	<select id="listUser" resultMap="userResultMap">
 		SELECT * FROM t_user where 1=1
-	 <![CDATA[ AND createTime >= #{startTime} ]]>
+		<if test="startTime != null and startTime !=''" >  
+		 <![CDATA[ AND createTime >= #{startTime} ]]>
+		</if>
+		<if test="endTime != null and endTime !=''" >
      <![CDATA[ AND createTime <= #{endTime} ]]>
+     </if>
 		ORDER BY createTime DESC
 	</select>
 	

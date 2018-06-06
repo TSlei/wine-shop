@@ -104,7 +104,7 @@
 				<div class="row margin-bottom-20">
 						<div class="col-md-4 no-padding-right">
 						 <button class="btn btn-blue" role="button" data-toggle="modal" data-target="#myModal">
-					                      新增库存
+					                      新增用户
 					        </button>
 						</div>
 						<div class="col-md-4 no-padding-left margin-top-10" style="float:right;">
@@ -132,57 +132,50 @@
     <div class="modal-content">
       <div class="modal-header">
       <button aria-hidden="true" data-dismiss="modal" class="bootbox-close-button close" type="button">×</button>
-      <h4 class="modal-title">新增库存</h4>
+      <h4 class="modal-title">新增用户</h4>
     </div>
     <form action="project-list.htm" role="form" class="form-horizontal bv-form" id="xzkc" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
       <div class="modal-body">
+
 			
             <div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 商品编号 :</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 用户名 :</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-                <input placeholder="请输入商品编号,很重要" name="code" id="code1" type="text" class="form-control">
-			  </div>
-            </div>
-			
-            <div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 生产厂家 :</label>
-              <div class="col-sm-9 padding-left-10 padding-right-10">
-                <input placeholder="请输入生产厂家" name="makerName" id="makerName1" type="text" class="form-control">
+                <input placeholder="请输入用户名" name="userName" id="userName" type="text" class="form-control">
 			  </div>
             </div>
             
 			<div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 商品名称 :</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 性别 :</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-                <input placeholder="请输入商品名称" name="name" id="name1" type="text" class="form-control">
+                <input placeholder="请输入商品名称" name="sex" id="sex" type="text" class="form-control">
 			  </div>
             </div>
 			
 			<div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 进价 :</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 手机号 :</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-                <input placeholder="请输入进价" name="price" id="price1" type="text" class="form-control">
+                <input placeholder="请输入手机号" name="mobile" id="mobile" type="text" class="form-control">
 			  </div>
             </div>
 			
 			<div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 进货数量 :</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 会员编码 :</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-				<input placeholder="请输入进货数量" name="num" id="num1" type="text" class="form-control">
+				<input placeholder="请输入会员编码" name="vipCode" id="vipCode" type="text" class="form-control">
 			  </div>
             </div>
 			
 			<div class="form-group has-feedback">
-              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 说明:</label>
+              <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span> 备注:</label>
               <div class="col-sm-9 padding-left-10 padding-right-10">
-                <textarea rows="10" name="detail" id="detail1" style="height:85px;" class="form-control alterClass"></textarea>
+                <textarea rows="10" name="remark" id="remark" style="height:85px;" class="form-control alterClass"></textarea>
 			  </div>
             </div>
-            
-		
+
 	</div>
       <div class="modal-footer">
-        <input type="button" onclick="addItem();" value="保存" class="btn btn-primary">
+        <input type="button" onclick="addUser();" value="保存" class="btn btn-primary">
       <button type="button" class="btn btn-default" data-dismiss="modal">取消 </button>
       </div>
       </form>
@@ -195,7 +188,7 @@
     <div class="modal-content">
       <div class="modal-header">
       <button aria-hidden="true" data-dismiss="modal" class="bootbox-close-button close" type="button">×</button>
-      <h4 class="modal-title">修改库存</h4>
+      <h4 class="modal-title">修改用户</h4>
     </div>
     <form action="project-list.htm" role="form" class="form-horizontal bv-form" id="xgkc" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
       <div class="modal-body">
@@ -256,6 +249,6 @@
 #parse("inc/footer.vm")
 <script src="/assets/js/layer/layer.js"></script> 
 <script src="/assets/js/util/pagination.js"></script> 
-<script src="/assets/js/item/itemList.js"></script>
+<script src="/assets/js/item/userList.js"></script>
 </body>
 </html>
