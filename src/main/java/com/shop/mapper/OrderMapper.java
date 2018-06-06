@@ -6,13 +6,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.shop.entity.Order;
+import com.shop.entity.request.RequestParam;
 
 @Mapper
 public interface OrderMapper {
 
     int insertOrder(Order record);
 
-    List<Order> listOrder(@Param("startTime")String startTime, @Param("endTime")String endTime);
+    List<Order> listOrder(RequestParam request);
     
     Integer deleteOrder(@Param("id")Long id);
     

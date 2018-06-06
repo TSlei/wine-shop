@@ -1,14 +1,14 @@
 package com.shop.service;
 
-import java.util.List;
-
+import com.github.pagehelper.PageInfo;
 import com.shop.entity.ScoreRecord;
+import com.shop.entity.request.RequestParam;
 
 public interface ScoreRecordService {
 	
-	List<ScoreRecord> listScoreRecord();
+	PageInfo<ScoreRecord> listScoreRecord(RequestParam request);
 	
-	List<ScoreRecord> getScoreRecordByName(String name);
+	PageInfo<ScoreRecord> getScoreRecordByName(RequestParam request);
 	
 	Integer insertScoreRecord(ScoreRecord scoreRecord);
 	

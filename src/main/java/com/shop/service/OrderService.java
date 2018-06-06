@@ -1,12 +1,12 @@
 package com.shop.service;
 
-import java.util.List;
-
+import com.github.pagehelper.PageInfo;
 import com.shop.entity.Order;
+import com.shop.entity.request.RequestParam;
 
 public interface OrderService {
 	
-	List<Order> listOrder(String startTime, String endTime);
+	PageInfo<Order> listOrder(RequestParam request);
 	
 	Integer insertOrder(Order order);
 	

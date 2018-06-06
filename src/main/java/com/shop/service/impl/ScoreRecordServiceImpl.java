@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.shop.entity.ScoreRecord;
+import com.shop.entity.request.RequestParam;
 import com.shop.mapper.ScoreRecordMapper;
 import com.shop.service.ScoreRecordService;
 
@@ -16,8 +19,12 @@ public class ScoreRecordServiceImpl implements ScoreRecordService{
 	private ScoreRecordMapper scoreRecordMapper;
 	
 	@Override
-	public List<ScoreRecord> listScoreRecord() {
-		return scoreRecordMapper.listScoreRecord();
+	public PageInfo<ScoreRecord> listScoreRecord(RequestParam request) {
+		int pageSize = request.getPageSize();;
+		int currentPageNum = request.getPageNum();
+		PageHelper.startPage(currentPageNum, pageSize, true);
+		List<ScoreRecord> scoreRecords = scoreRecordMapper.listScoreRecord(request);
+		return new PageInfo<ScoreRecord>(scoreRecords);
 	}
 	
 	@Override
@@ -35,9 +42,12 @@ public class ScoreRecordServiceImpl implements ScoreRecordService{
 	}
 
 	@Override
-	public List<ScoreRecord> getScoreRecordByName(String userName) {
-		List<ScoreRecord> scoreRecords = scoreRecordMapper.getScoreRecordByName(userName);
-		return scoreRecords;
+	public PageInfo<ScoreRecord> getScoreRecordByName(RequestParam request) {
+		int pageSize = request.getPageSize();;
+		int currentPageNum = request.getPageNum();
+		PageHelper.startPage(currentPageNum, pageSize, true);
+		List<ScoreRecord> scoreRecords = scoreRecordMapper.getScoreRecordByName(request);
+		return new PageInfo<ScoreRecord>(scoreRecords);
 	}
 
 	@Override
