@@ -5,10 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.shop.entity.User;
+import com.shop.entity.request.RequestParam;
 import com.shop.mapper.UserMapper;
 import com.shop.service.UserService;
-import com.shop.utils.AdminUtils;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -17,8 +18,11 @@ public class UserServiceImpl implements UserService{
 	private UserMapper userMapper;
 
 	@Override
-	public List<User> listUser(String startTime, String endTime) {
-		List<User> users = userMapper.listUser(startTime, endTime);
+	public List<User> listUser(RequestParam request) {
+		int pageSize = request.getPageSize();;
+		int currentPageNum = request.getPageNum();
+		PageHelper.startPage(currentPageNum, pageSize, true);
+		List<User> users = userMapper.listUser(request);
 		return users;
 	}
 

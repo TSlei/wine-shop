@@ -13,7 +13,7 @@
 		<result column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" property="createTime" />
 	</resultMap>
 
-	<select id="listUser" resultMap="userResultMap">
+	<select id="listUser" parameterType="com.shop.entity.request.RequestParam" resultMap="userResultMap">
 		SELECT * FROM t_user where 1=1
 		<if test="startTime != null and startTime !=''" >  
 			 AND createTime <![CDATA[ >= ]]> #{startTime}

@@ -6,11 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.shop.entity.User;
+import com.shop.entity.request.RequestParam;
 
 @Mapper
 public interface UserMapper {
 	
-	List<User> listUser(@Param("startTime")String startTime, @Param("endTime") String endTime);
+	List<User> listUser(@Param("request")RequestParam requestParam);
 	
 	Integer insertUser(User user);
 	
