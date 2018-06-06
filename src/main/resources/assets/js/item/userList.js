@@ -22,7 +22,9 @@ function initTableFunction(){
 			pageSize:10,
 			pageNum:1,
 			adminId:$("#code").val().trim(),
-			userName:$("#name").val().trim()
+			userName:$("#name").val().trim(),
+			startTime:"2018-06-06",
+			endTime:"2018-06-07"
 		};
 	 
 		$("#myTabContent").pagination({

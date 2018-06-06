@@ -32,9 +32,9 @@ public class UserController {
 	
 	@RequestMapping("/user/table")
 	public ModelAndView userTable(HttpServletRequest request, RequestParam requestParam){
-		PageInfo<User> userList = userSerivce.listUser(requestParam);
+		PageInfo<User> result = userSerivce.listUser(requestParam);
 		ModelAndView model = new ModelAndView("basic/item/user-list-table");
-		model.addObject("userList", userList);
+		model.addObject("result", result);
 		return model;
 	}
 	
