@@ -16,11 +16,12 @@
 	<select id="listUser" resultMap="userResultMap">
 		SELECT * FROM t_user where 1=1
 		<if test="startTime != null and startTime !=''" >  
-		 <![CDATA[ AND createTime >= #{startTime} ]]>
+			 AND createTime <![CDATA[ >= ]]> #{startTime}
 		</if>
+		
 		<if test="endTime != null and endTime !=''" >
-     <![CDATA[ AND createTime <= #{endTime} ]]>
-     </if>
+     		 AND createTime <![CDATA[ <= ]]> #{endTime}
+     	</if>
 		ORDER BY createTime DESC
 	</select>
 	

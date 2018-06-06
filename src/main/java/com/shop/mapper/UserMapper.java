@@ -10,7 +10,7 @@ import com.shop.entity.User;
 @Mapper
 public interface UserMapper {
 	
-	List<User> listUser(@Param("startTime")String startTime,@Param("endTime") String endTime);
+	List<User> listUser(@Param("startTime")String startTime, @Param("endTime") String endTime);
 	
 	Integer insertUser(User user);
 	

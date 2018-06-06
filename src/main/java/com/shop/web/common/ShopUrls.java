@@ -14,5 +14,9 @@ public interface ShopUrls {
      */
     String QUERY_ORDERS = index + "/gerOrderList";
     
+    String QUERY_USERS = index + "/gerUserList";
+    
+    String QUERY_SCORES = index + "/gerScoreList";
+    
     
 }
