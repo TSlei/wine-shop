@@ -21,4 +21,5 @@ public interface OrderMapper {
     
     Integer updateOrder(Order order);
     
+    List<Order> selectMonthTheSales(@Param("dateType")String dateType);
 }

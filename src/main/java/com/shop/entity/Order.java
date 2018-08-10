@@ -38,6 +38,37 @@ public class Order implements Serializable{
     
     private Date createTime;
 
+    /**报表用到*/
+    private Integer countWeight;
+    private String countPrice;
+    private String date;
+    
+    
+
+	public Integer getCountWeight() {
+		return countWeight;
+	}
+
+	public void setCountWeight(Integer countWeight) {
+		this.countWeight = countWeight;
+	}
+
+	public String getCountPrice() {
+		return countPrice;
+	}
+
+	public void setCountPrice(String countPrice) {
+		this.countPrice = countPrice;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public Long getAdminId() {
 		return adminId;
 	}

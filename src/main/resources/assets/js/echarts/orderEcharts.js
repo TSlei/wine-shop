@@ -19,7 +19,7 @@ option = {
 	        trigger: 'axis'
 	    },
 	    legend: {
-	        data:['销售额']
+	        data:['销售额','销售量']
 	    },
 	    toolbox: {
 	        show : true,
@@ -48,21 +48,28 @@ option = {
 	            name:'销售额',
 	            type:'bar',
 	            data:null
+	        },
+	        {
+	            name:'销售量',
+	            type:'bar',
+	            data:null
 	        }
 	    ]
 	};
 $(document).ready(function(){
 	$.ajax({
 		type:"post",
-		url:"/echarts/getAllDate",
+		url:"/shop/echarts/getAllDate",
 		data:{
-			"yearNum":$("#yearNum").val()
+			"num":$("#yearNum").val(),
+			"type":$("#changeType").val()
 		},
 		success:function(msg){
 			allDate = msg;
 			myChart.hideLoading();
 			option.xAxis[0].data = allDate.arrayX;
 			option.series[0].data = allDate.arrayY;
+			option.series[1].data = allDate.arrayZ;
 			myChart.setOption(option);
 		}
 	});
@@ -70,34 +77,38 @@ $(document).ready(function(){
 
 
 $("#changeType").change(function(){
-	var type = $(this).val();
-	if(type == "price"){
-		option.legend.data[0] = "销售额";
-		option.series[0].name = "销售额";
-		option.xAxis[0].data = allDate.arrayX;
-		option.series[0].data = allDate.arrayY;
-		myChart.setOption(option);
-	}else{
-		option.legend.data[0] = "销售量";
-		option.series[0].name = "销售量";
-		option.xAxis[0].data = allDate.arrayX;
-		option.series[0].data = allDate.arrayZ;
-		myChart.setOption(option);
-	}
-})
-
-$("#yearNum").change(function(){
 	$.ajax({
 		type:"post",
-		url:"/echarts/getAllDate",
+		url:"/shop/echarts/getAllDate",
 		data:{
-			"yearNum":$("#yearNum").val()
+			"num":$("#yearNum").val(),
+			"type":$("#changeType").val()
 		},
 		success:function(msg){
 			allDate = msg;
 			myChart.hideLoading();
 			option.xAxis[0].data = allDate.arrayX;
 			option.series[0].data = allDate.arrayY;
+			option.series[1].data = allDate.arrayZ;
+			myChart.setOption(option);
+		}
+	});
+})
+
+$("#yearNum").change(function(){
+	$.ajax({
+		type:"post",
+		url:"/shop/echarts/getAllDate",
+		data:{
+			"num":$("#yearNum").val(),
+			"type":$("#changeType").val()
+		},
+		success:function(msg){
+			allDate = msg;
+			myChart.hideLoading();
+			option.xAxis[0].data = allDate.arrayX;
+			option.series[0].data = allDate.arrayY;
+			option.series[1].data = allDate.arrayZ;
 			myChart.setOption(option);
 		}
 	});

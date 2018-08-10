@@ -60,5 +60,16 @@
 		remark = #{remark}
 		WHERE id = #{id};
 	</update>
-
+	
+<select id="selectMonthTheSales" resultType="com.shop.entity.Order">
+SELECT
+	SUM(weight) as countWeight,
+	productName,
+	SUM(price) countPrice,
+	DATE_FORMAT(createTime,'%Y-%m') as date
+FROM
+	`t_order` 
+GROUP BY
+	date;
+</select>
 </mapper>

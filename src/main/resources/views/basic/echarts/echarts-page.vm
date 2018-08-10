@@ -63,19 +63,22 @@
                       <div class="row margin-bottom-20">
 						<div class="col-md-4 no-padding-right">
                          <select id="changeType" class="btn-default">
-    						 <option value="price">
-    							金额
+                             <option value="month">
+    							日
                              </option>
-    						 <option value="num">
-    							数量
+    						 <option value="month">
+    							月
+                             </option>
+    						 <option value="month">
+    							年
                              </option>
 						 </select>
 						 <select id="yearNum" class="btn-default">
     						 <option value="2018">
     							2018
                              </option>
-    						 <option value="2017">
-    							2017
+    						 <option value="2019">
+    							2019
                              </option>
 						 </select>
 						</div>

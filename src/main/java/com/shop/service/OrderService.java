@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.shop.entity.Order;
 import com.shop.entity.request.RequestParam;
@@ -15,5 +16,7 @@ public interface OrderService {
     Order getOrderById(Long orderId);
     
     Integer updateOrder(Order order);
+    
+    JSONObject selectMonthTheSales(String type,String num);
     
 }
